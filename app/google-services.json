@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "541708464948",
+    "project_id": "gsmusicapp",
+    "storage_bucket": "gsmusicapp.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:541708464948:android:b8054a0fb141872cecab61",
+        "android_client_info": {
+          "package_name": "com.pack.gsmusic"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXZI8A_xNKgPKlVYuPlgnsJVpjMFyu6Gw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
