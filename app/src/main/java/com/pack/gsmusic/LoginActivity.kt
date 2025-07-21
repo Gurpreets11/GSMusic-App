@@ -14,8 +14,7 @@ import android.widget.Toast
  import com.google.firebase.auth.FirebaseAuth
 
 
-class RegisterActivity : AppCompatActivity() {
-
+class LoginActivity : AppCompatActivity() {
     private lateinit var emailTextView: EditText
     private lateinit var passwordTextView: EditText
     private lateinit var button: Button
@@ -23,22 +22,21 @@ class RegisterActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_register)
+        setContentView(R.layout.activity_login)
 
-        // creating FirebaseAuth instance
+        // creating instance of FirebaseAuth
         auth = FirebaseAuth.getInstance()
 
         emailTextView = findViewById(R.id.email_edittext)
         passwordTextView = findViewById(R.id.password_edittext)
-        button = findViewById(R.id.register_button)
+        button = findViewById(R.id.login_button)
 
         button.setOnClickListener {
-            registerNewUser()
+            loginUserAccount()
         }
     }
 
-    private fun registerNewUser() {
-        // Take the value of two edit texts in Strings
+    private fun loginUserAccount() {
         val email = emailTextView.text.toString()
         val password = passwordTextView.text.toString()
 
@@ -46,15 +44,15 @@ class RegisterActivity : AppCompatActivity() {
         if (email.isEmpty() || password.isEmpty()) {
             Toast.makeText(this, "please enter credentials", Toast.LENGTH_LONG).show()
         } else {
-            // create new user or register new user
-            auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+            // login existing user
+            auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Toast.makeText(this, "Registration successful!", Toast.LENGTH_LONG).show()
-                    // if the user created intent to login activity
+                    // login successful
+                    Toast.makeText(this, "Login successful!!", Toast.LENGTH_LONG).show()
                     startActivity(Intent(this, MainActivity::class.java))
                 } else {
-                    // Registration failed
-                    Toast.makeText(this, "Registration failed!!" + " Please try again later", Toast.LENGTH_LONG).show()
+                    // login failed
+                    Toast.makeText(this, "Login failed!!", Toast.LENGTH_LONG).show()
                 }
             }
         }
