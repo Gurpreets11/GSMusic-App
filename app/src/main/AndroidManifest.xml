@@ -13,6 +13,12 @@
         android:theme="@style/Theme.GSMusicApp"
         tools:targetApi="31">
         <activity
+            android:name=".SongListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AddSongActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivity"
             android:exported="false" />
         <activity
