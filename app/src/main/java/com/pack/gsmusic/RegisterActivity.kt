@@ -52,6 +52,7 @@ class RegisterActivity : AppCompatActivity() {
                     Toast.makeText(this, "Registration successful!", Toast.LENGTH_LONG).show()
                     // if the user created intent to login activity
                     startActivity(Intent(this, MainActivity::class.java))
+                    finish()
                 } else {
                     // Registration failed
                     Toast.makeText(this, "Registration failed!!" + " Please try again later", Toast.LENGTH_LONG).show()

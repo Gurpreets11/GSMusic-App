@@ -49,7 +49,8 @@ class LoginActivity : AppCompatActivity() {
                 if (task.isSuccessful) {
                     // login successful
                     Toast.makeText(this, "Login successful!!", Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this, MainActivity::class.java))
+                    startActivity(Intent(this, SongListActivity::class.java))
+                    finish()
                 } else {
                     // login failed
                     Toast.makeText(this, "Login failed!!", Toast.LENGTH_LONG).show()
