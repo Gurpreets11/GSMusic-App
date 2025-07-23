@@ -7,6 +7,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -50,5 +54,23 @@ public class AddSongActivity extends AppCompatActivity {
 
     private void saveUrlToDB(String videoUrl) {
         Log.e("TAG", "videoUrl :" + videoUrl);
+
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("user");
+
+        String userId = userRef.push().getKey();  // generate unique ID
+        HashMap<String, Object> user = new HashMap<>();
+        user.put("name", "Gurpreet");
+        user.put("email", "gurpreet@example.com");
+        user.put("age", 28);
+
+        userRef.child(userId).setValue(user)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(this, "User added", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+
+
     }
 }
