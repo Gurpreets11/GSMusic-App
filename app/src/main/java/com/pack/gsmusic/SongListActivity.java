@@ -13,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.pack.gsmusic.adapter.UserAdapter;
 import com.pack.gsmusic.dto.User;
+import com.pack.gsmusic.dto.Video;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -113,4 +114,30 @@ public class SongListActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    public void loadVideosByPlaylist(String playlistId) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("videos");
+
+        ref.orderByChild("playlistId").equalTo(playlistId)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        List<Video> videoList = new ArrayList<>();
+                        for (DataSnapshot ds : snapshot.getChildren()) {
+                            Video video = ds.getValue(Video.class);
+                            videoList.add(video);
+                        }
+
+                        // Pass to RecyclerView adapter here
+                        Log.d("VIDEOS", "Total videos: " + videoList.size());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Log.e("FIREBASE", error.getMessage());
+                    }
+                });
+    }
+
 }
